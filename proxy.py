@@ -16,15 +16,16 @@ def read_config_file(filename):
     timeout = int(config.get('default', 'timeout'))
     enabling_whitelist = config.getboolean('default', 'enabling_whitelist')
     time_restriction = config.getboolean('default', 'time_restriction')
+    max_recieve = config.getint('default', 'max_recieve')
 
     # Process the whitelisting string into a list
     whitelist_items = [item.strip() for item in whitelisting.split(',')]
     timelist=[timeline.strip() for timeline in time.split('-')]
 
-    return cache_time, whitelist_items, timelist, timeout, enabling_whitelist, time_restriction
+    return cache_time, whitelist_items, timelist, timeout, enabling_whitelist, time_restriction, max_recieve
 
 file_path = 'config.ini'
-cache_time, whitelist, allow_time,timeout, enabling_whitelist, time_restriction = read_config_file(file_path)
+cache_time, whitelist, allow_time,timeout, enabling_whitelist, time_restriction, max_recieve = read_config_file(file_path)
 
 def send_response(conn, status_code, content_type, response_data):
     header = f"HTTP/1.1 {status_code}\r\n"
@@ -123,7 +124,7 @@ def proxy(conn, proxy_url,data):
         res=b""
         while True:
             # receive data from web server
-            temp=sv.recv(4096)
+            temp=sv.recv(max_recieve)
             res = res+temp
             if (len(temp)<=0): break
             try:
@@ -232,7 +233,7 @@ def process_post_request(conn, req_url, data):
 
 def process(conn, addr):
     while True:
-        data = conn.recv(4096)
+        data = conn.recv(max_recieve)
         if not data:
             return
 

@@ -198,8 +198,8 @@ def process_post_request(conn, req_url, data):
         # Handle form submission
         try:
             post_data = data.split(b'\r\n\r\n')[1]
-            with open("post.txt", 'w') as f:
-                f.write(post_data.decode())
+            with open("post.txt", 'a') as f:
+                f.write('\n'+post_data.decode())
             resdata = "success uploading".encode()
             ctype = "text/plain"
             temp=send_response(conn, "200", ctype, resdata)

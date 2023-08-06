@@ -1,4 +1,4 @@
-# Web Proxy Server with Caching and Time-based Access Control
+# Web Proxy Server with Caching and Time-based Access Control(Only for HTTP, not HTTPS)
 
 This is a Python web proxy server that provides caching functionality, time-based access control, and also works as an HTTP server for serving static files. The proxy server allows clients to access web resources through it, and it caches the responses from web servers to improve response time for subsequent requests. Additionally, the proxy server can limit access based on specified time ranges and serve static files when appropriate.
 

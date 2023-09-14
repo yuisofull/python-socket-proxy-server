@@ -99,4 +99,3 @@ python proxy.py 127.0.0.1 8888
 - The proxy server supports `GET`, `HEAD`, `POST`, and additional features such as `SUBMIT` and `UPLOAD`. Unsupported methods will receive a "403 Forbidden" response.
 - The proxy server will close the connection after each request-response cycle.
 
-Please feel free to customize and use this web proxy server to meet your specific requirements. If you have any questions or need further assistance, don't hesitate to reach out. Happy proxying!
